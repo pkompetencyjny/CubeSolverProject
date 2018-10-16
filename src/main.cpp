@@ -18,7 +18,7 @@ int main()
 	inRange(hsv, Scalar(170, 70, 50), Scalar(180, 255, 255), mask2);
 
 	Mat mask = mask1 | mask2;
-	imshow("Sors", bgr);
+	imshow("Source", bgr);
 	imshow("Mask", mask);
 	waitKey();
 
