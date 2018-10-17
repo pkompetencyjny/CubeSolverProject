@@ -37,9 +37,9 @@ int main()
 					}
 					else
 					{
-						c.val[2] = 255; // Red
-						c.val[1] = 255;// Green
-						c.val[0] = 255;// Blue
+						c.val[2] = 0; // Red
+						c.val[1] = 0;// Green
+						c.val[0] = 0;// Blue
 						cvSet2D(copy, i, j, c);
 					}
 				}
@@ -70,16 +70,16 @@ int main()
 
 
 					{
-						c.val[2] = 223;//Set R to 0
-						c.val[1] = 81;//Set G to 255
-						c.val[0] = 61;//Set B to 0
+						c.val[2] = 223;
+						c.val[1] = 81;
+						c.val[0] = 61;
 						cvSet2D(copy, i, j, c);
 					}
 					else
 					{
-						c.val[2] = 255; // Red
-						c.val[1] = 255;// Green
-						c.val[0] = 255;// Blue
+						c.val[2] = 0; // Red
+						c.val[1] = 0;// Green
+						c.val[0] = 0;// Blue
 						cvSet2D(copy, i, j, c);
 					}
 				}
@@ -117,9 +117,9 @@ int main()
 					}
 					else
 					{
-						c.val[2] = 255;
-						c.val[1] = 255;
-						c.val[0] = 255;
+						c.val[2] = 0;
+						c.val[1] = 0;
+						c.val[0] = 0;
 						cvSet2D(copy, i, j, c);
 					}
 				}
@@ -159,9 +159,9 @@ int main()
 					}
 					else
 					{
-						c.val[2] = 255;
-						c.val[1] = 255;
-						c.val[0] = 255;
+						c.val[2] = 0;
+						c.val[1] = 0;
+						c.val[0] = 0;
 						cvSet2D(copy, i, j, c);
 					}
 				}
