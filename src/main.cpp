@@ -11,24 +11,19 @@ int main()
 	char name[] = "../images/cubereal2.jpg";
 	IplImage* src = cvLoadImage(name, 1);
 	IplImage* copy = cvCreateImage(cvGetSize(src), 8, 3);
-	CvScalar s, c;
+	CvScalar s, c, test;
 	int liczba;
-		std::cout << "Podaj liczbe";
+		std::cout << "Podaj liczbe od 1 do 4 || 1 - zielony, 2 - czerwony, 3 - niebieski, 4 - zolty\n";
 		std::cin >> liczba;
 		switch (liczba) {
 		case 1:
 
-
 			for (int i = 0; i < (src->height); i++)
-
 			{
 				for (int j = 0; j < (src->width); j++)
-
 				{
 					s = cvGet2D(src, i, j);
 					if ((s.val[2] < 50) && (s.val[1] > 100) && (s.val[0] < 100))
-
-
 					{
 						c.val[2] = 0;
 						c.val[1] = 255;
@@ -46,11 +41,10 @@ int main()
 
 			}
 
-
 			std::cout << "Znaleziony kolor to zielony";
-			cvNamedWindow("Input", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Input", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Input", src);
-			cvNamedWindow("Output", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Output", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Output", copy);
 			waitKey();
 			cvReleaseImage(&src);
@@ -58,17 +52,12 @@ int main()
 
 		case 2:
 
-
 			for (int i = 0; i < (src->height); i++)
-
 			{
 				for (int j = 0; j < (src->width); j++)
-
 				{
 					s = cvGet2D(src, i, j);
 					if ((s.val[2] > 180) && (s.val[1] < 100) && (s.val[0] < 80))
-
-
 					{
 						c.val[2] = 223;
 						c.val[1] = 81;
@@ -86,11 +75,10 @@ int main()
 
 			}
 
-
 			std::cout << "Znaleziony kolor to czerwony";
-			cvNamedWindow("Input", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Input", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Input", src);
-			cvNamedWindow("Output", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Output", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Output", copy);
 			waitKey();
 			cvReleaseImage(&src);
@@ -98,17 +86,12 @@ int main()
 
 		case 3:
 
-
 			for (int i = 0; i < (src->height); i++)
-
 			{
 				for (int j = 0; j < (src->width); j++)
-
 				{
 					s = cvGet2D(src, i, j);
 					if ((s.val[2] < 60) && (s.val[1] < 150) && (s.val[0] > 120))
-
-
 					{
 						c.val[2] = 44;
 						c.val[1] = 97;
@@ -126,11 +109,10 @@ int main()
 
 			}
 
-
 			std::cout << "Znaleziony kolor to niebieski";
-			cvNamedWindow("Input", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Input", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Input", src);
-			cvNamedWindow("Output", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Output", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Output", copy);
 			waitKey();
 			cvReleaseImage(&src);
@@ -138,19 +120,12 @@ int main()
 
 		case 4:
 
-
-
-
 			for (int i = 0; i < (src->height); i++)
-
 			{
 				for (int j = 0; j < (src->width); j++)
-
 				{
 					s = cvGet2D(src, i, j);
 					if ((s.val[2] > 200) && (s.val[1] > 200) && (s.val[0] < 100))
-
-
 					{
 						c.val[2] = 255;
 						c.val[1] = 255;
@@ -168,19 +143,15 @@ int main()
 
 			}
 
-
 			std::cout << "Znaleziony kolor to zolty";
-			cvNamedWindow("Input", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Input", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Input", src);
-			cvNamedWindow("Output", CV_WINDOW_AUTOSIZE);
+			cvNamedWindow("Output", CV_WINDOW_KEEPRATIO);
 			cvShowImage("Output", copy);
 			waitKey();
 			cvReleaseImage(&src);
 			break;
 
-
 		}
-
-
 	return 0;
 }
