@@ -12,10 +12,76 @@ int main()
 	IplImage* src = cvLoadImage(name, 1);
 	IplImage* copy = cvCreateImage(cvGetSize(src), 8, 3);
 	CvScalar s, c, test;
-	int liczba;
-		std::cout << "Podaj liczbe od 1 do 4 || 1 - zielony, 2 - czerwony, 3 - niebieski, 4 - zolty\n";
-		std::cin >> liczba;
-		switch (liczba) {
+	int g = 0, r = 0, b = 0, y = 0, w = 0, o=0;
+		for (int i = 0; i < (src->height); i++)
+		{
+			for (int j = 0; j < (src->width); j++)
+			{
+				s = cvGet2D(src, i, j);
+				if (s.val[2]<40 && s.val[1]>130 && s.val[0]<60)
+				{
+					g++;
+					c.val[2] = 0;
+					c.val[1] = 255;
+					c.val[0] = 0;
+					cvSet2D(copy, i, j, c);
+				}
+				else  if ((s.val[2] > 185) && (s.val[1] < 95) && (s.val[0] < 80))
+				{
+					r++;
+					c.val[2] = 255;
+					c.val[1] = 0;
+					c.val[0] = 0;
+					cvSet2D(copy, i, j, c);
+				}
+				else if ((s.val[2] < 60) && (s.val[1] < 150) && (s.val[0] > 120))
+				{
+					b++;
+					c.val[2] = 0;
+					c.val[1] = 0;
+					c.val[0] = 255;
+					cvSet2D(copy, i, j, c);
+				}
+				else if ((s.val[2] > 200) && (s.val[1] > 200) && (s.val[0] < 100))
+				{
+					y++;
+					c.val[2] = 255;
+					c.val[1] = 255;
+					c.val[0] = 0;
+					cvSet2D(copy, i, j, c);
+				}
+				else if ((s.val[2] > 200) && (s.val[1] > 200) && (s.val[0] > 200))
+				{
+					w++;
+					c.val[2] = 255;
+					c.val[1] = 255;
+					c.val[0] = 255;
+					cvSet2D(copy, i, j, c);
+				}
+				else if ((s.val[2] > 230) && (s.val[1] > 100) && (s.val[0] < 90))
+				{
+					o++;
+					c.val[2] = 255;
+					c.val[1] = 162;
+					c.val[0] = 74;
+					cvSet2D(copy, i, j, c);
+				}
+				else {
+					c.val[2] = 0;
+					c.val[1] = 0;
+					c.val[0] = 0;
+					cvSet2D(copy, i, j, c);
+				}
+
+			}
+		}
+		std::cout<< "Green:" << g <<std::endl;
+		std::cout<< "Red:" << r <<std::endl;
+		std::cout << "Blue:" << b << std::endl;
+		std::cout << "Yellow:" << y << std::endl;
+		std::cout << "white:" << w << std::endl;
+		std::cout << "orange:" << o << std::endl;
+		/*switch (liczba) {
 		case 1:
 
 			for (int i = 0; i < (src->height); i++)
@@ -152,6 +218,12 @@ int main()
 			cvReleaseImage(&src);
 			break;
 
-		}
+		}*/
+cvNamedWindow("Input", CV_WINDOW_KEEPRATIO);
+cvShowImage("Input", src);
+cvNamedWindow("Output", CV_WINDOW_KEEPRATIO);
+cvShowImage("Output", copy);
+waitKey();
+cvReleaseImage(&src);
 	return 0;
 }
