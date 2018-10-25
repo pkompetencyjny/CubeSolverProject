@@ -177,12 +177,11 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 }
 
 
-int camera(VideoCapture cap)
+int crop()
 {
 
-	Mat cube,original;
-	cap >> cube;
-	cap >> original;
+	Mat cube = imread("../images/cubereal2.jpg", 0);
+	Mat original = imread("../images/cubereal2.jpg", 1);
 	Mat outerBox = Mat(cube.size(), CV_8UC1);
 	GaussianBlur(cube, cube, Size(11, 11), 0);
 	adaptiveThreshold(cube, outerBox, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 5, 2);
@@ -380,15 +379,28 @@ int camera(VideoCapture cap)
 	cv::warpPerspective(original, undistorted, cv::getPerspectiveTransform(src, dst), Size(maxLength, maxLength));
 	imshow("undistorted", undistorted);
 	imshow("cube", cube);
-	imshow("lines", outerBox);
+	//imshow("lines", outerBox);
 	waitKey(0);
 	return 0;
 }
 
-int main()
+int main(int, char**)
 {
-	VideoCapture cap(0); // open the default camera
-	if (!cap.isOpened())  // check if we succeeded
+	VideoCapture cap(0); 
+	if (!cap.isOpened()) 
 		return -1;
-	camera(cap);
+	crop();
+	Mat edges;
+	namedWindow("edges", 1);
+	for (;;)
+	{
+		Mat frame;
+		cap >> frame; // get a new frame from camera
+		cvtColor(frame, edges, COLOR_BGR2GRAY);
+		GaussianBlur(edges, edges, Size(7, 7), 1.5, 1.5);
+		Canny(edges, edges, 0, 30, 3);
+		imshow("edges", edges);
+		if (waitKey(30) >= 0) break;
+	}
+	return 0;
 }
