@@ -177,11 +177,11 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 }
 
 
-int crop()
+Mat crop(String srcImage)
 {
 
-	Mat cube = imread("../images/cubereal2.jpg", 0);
-	Mat original = imread("../images/cubereal2.jpg", 1);
+	Mat cube = imread(srcImage, 0);
+	Mat original = imread(srcImage, 1);
 	Mat outerBox = Mat(cube.size(), CV_8UC1);
 	GaussianBlur(cube, cube, Size(11, 11), 0);
 	adaptiveThreshold(cube, outerBox, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 5, 2);
@@ -318,7 +318,6 @@ int crop()
 
 	top1.x = 0;        top1.y = topEdge[0] / sin(topEdge[1]);
 	top2.x = width;    top2.y = -top2.x / tan(topEdge[1]) + top1.y;
-	// Next, we find the intersection of  these four lines
 	double leftA = left2.y - left1.y;
 	double leftB = left1.x - left2.x;
 
@@ -378,10 +377,9 @@ int crop()
 	Mat undistorted = Mat(Size(maxLength, maxLength), CV_8UC1);
 	cv::warpPerspective(original, undistorted, cv::getPerspectiveTransform(src, dst), Size(maxLength, maxLength));
 	imshow("undistorted", undistorted);
-	imshow("cube", cube);
+	return undistorted;
+	//imshow("cube", cube);
 	//imshow("lines", outerBox);
-	waitKey(0);
-	return 0;
 }
 
 int main(int, char**)
@@ -389,17 +387,12 @@ int main(int, char**)
 	VideoCapture cap(0); 
 	if (!cap.isOpened()) 
 		return -1;
-	crop();
-	Mat edges;
-	namedWindow("edges", 1);
+	Mat croppedImage=crop("../images/cubereal2.jpg");
 	for (;;)
 	{
 		Mat frame;
-		cap >> frame; // get a new frame from camera
-		cvtColor(frame, edges, COLOR_BGR2GRAY);
-		GaussianBlur(edges, edges, Size(7, 7), 1.5, 1.5);
-		Canny(edges, edges, 0, 30, 3);
-		imshow("edges", edges);
+		cap >> frame;
+		imshow("cam", frame);
 		if (waitKey(30) >= 0) break;
 	}
 	return 0;
