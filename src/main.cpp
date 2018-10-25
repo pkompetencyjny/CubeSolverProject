@@ -6,7 +6,7 @@
 #include<opencv\cv.hpp>
 using namespace cv;
 
-int colorImage(Mat croppedImage)
+int extractColors(Mat croppedImage)
 {
 	IplImage* src = cvCloneImage(&(IplImage)croppedImage);
 	IplImage* copy = cvCreateImage(cvGetSize(src), 8, 3);
@@ -26,7 +26,7 @@ int colorImage(Mat croppedImage)
 					c.val[0] = 0;
 					cvSet2D(copy, i, j, c);
 				}
-				else  if ((s.val[2] > 185) && (s.val[1] < 95) && (s.val[0] < 80))
+				else  if ((s.val[2] > 180) && (s.val[1] < 100) && (s.val[0] < 90))
 				{
 					r++;
 					c.val[2] = 255;
@@ -42,7 +42,7 @@ int colorImage(Mat croppedImage)
 					c.val[0] = 255;
 					cvSet2D(copy, i, j, c);
 				}
-				else if ((s.val[2] > 200) && (s.val[1] > 200) && (s.val[0] < 100))
+				else if ((s.val[2] > 160) && (s.val[1] > 160) && (s.val[0] < 40))
 				{
 					y++;
 					c.val[2] = 255;
@@ -50,7 +50,7 @@ int colorImage(Mat croppedImage)
 					c.val[0] = 0;
 					cvSet2D(copy, i, j, c);
 				}
-				else if ((s.val[2] > 200) && (s.val[1] > 200) && (s.val[0] > 200))
+				else if ((s.val[2] > 160) && (s.val[1] > 160) && (s.val[0] > 160))
 				{
 					w++;
 					c.val[2] = 255;
@@ -380,14 +380,12 @@ Mat crop(String srcImage)
 
 int main(int, char**)
 {
-	char srcImageName[] = "../images/cubereal2.jpg";
+	char srcImageName[] = "../images/cubereal11.jpg";
 	IplImage* srcImage = cvLoadImage(srcImageName, 1);
 	Mat croppedImage=crop(String(srcImageName));
-	colorImage(croppedImage);
+	extractColors(croppedImage);
 	cvNamedWindow("SourceImage", CV_WINDOW_AUTOSIZE);
-	cvShowImage("SourceImage", srcImage);
-	imshow("undistorted", croppedImage);
-	
+	cvShowImage("SourceImage", srcImage);	
 	cvWaitKey(0);
 	return 0;
 }
