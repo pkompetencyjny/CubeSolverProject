@@ -18,7 +18,7 @@ int extractColors(Mat croppedImage)
 			for (int j = 0; j < (src->width); j++)
 			{
 				s = cvGet2D(src, i, j);
-				if (s.val[2]<40 && s.val[1]>130 && s.val[0]<60)
+				if (s.val[2]<40 && s.val[1]>73 && s.val[0]<60)
 				{
 					g++;
 					c.val[2] = 0;
@@ -26,23 +26,8 @@ int extractColors(Mat croppedImage)
 					c.val[0] = 0;
 					cvSet2D(copy, i, j, c);
 				}
-				else  if ((s.val[2] > 180) && (s.val[1] < 100) && (s.val[0] < 90))
-				{
-					r++;
-					c.val[2] = 255;
-					c.val[1] = 0;
-					c.val[0] = 0;
-					cvSet2D(copy, i, j, c);
-				}
-				else if ((s.val[2] < 60) && (s.val[1] < 150) && (s.val[0] > 120))
-				{
-					b++;
-					c.val[2] = 0;
-					c.val[1] = 0;
-					c.val[0] = 255;
-					cvSet2D(copy, i, j, c);
-				}
-				else if ((s.val[2] > 160) && (s.val[1] > 160) && (s.val[0] < 40))
+
+				else if ((s.val[2] > 140) && (s.val[1] > 155) && (s.val[0] < 145))
 				{
 					y++;
 					c.val[2] = 255;
@@ -50,20 +35,42 @@ int extractColors(Mat croppedImage)
 					c.val[0] = 0;
 					cvSet2D(copy, i, j, c);
 				}
-				else if ((s.val[2] > 160) && (s.val[1] > 160) && (s.val[0] > 160))
-				{
-					w++;
-					c.val[2] = 255;
-					c.val[1] = 255;
-					c.val[0] = 255;
-					cvSet2D(copy, i, j, c);
-				}
-				else if ((s.val[2] > 230) && (s.val[1] > 100) && (s.val[0] < 90))
+
+				else if ((s.val[2] > 205) && (s.val[1] > 90) && (s.val[0] < 75) && (s.val[0] > 20))
 				{
 					o++;
 					c.val[2] = 255;
 					c.val[1] = 162;
 					c.val[0] = 74;
+					cvSet2D(copy, i, j, c);
+				}
+
+
+				else  if ((s.val[2] > 180) && (s.val[1] < 130) && (s.val[0] < 100))
+				{
+					r++;
+					c.val[2] = 255;
+					c.val[1] = 0;
+					c.val[0] = 0;
+					cvSet2D(copy, i, j, c);
+				}
+
+
+
+				else if ((s.val[2] < 60) && (s.val[1] < 175) && (s.val[0] > 120))
+				{
+					b++;
+					c.val[2] = 0;
+					c.val[1] = 0;
+					c.val[0] = 255;
+					cvSet2D(copy, i, j, c);
+				}
+				else if ((s.val[2] > 150) && (s.val[1] > 150) && (s.val[0] > 150))
+				{
+					w++;
+					c.val[2] = 255;
+					c.val[1] = 255;
+					c.val[0] = 255;
 					cvSet2D(copy, i, j, c);
 				}
 				else {
@@ -133,7 +140,7 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 			pt2current.y = img.size().height;
 			pt2current.x = -pt2current.y / tan(theta1) + p1 / cos(theta1);
 
-		} 
+		}
 		std::vector<Vec2f>::iterator    pos;
 		for (pos = lines->begin(); pos != lines->end(); pos++)
 		{
@@ -160,7 +167,7 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 				if (((double)(pt1.x - pt1current.x)*(pt1.x - pt1current.x) + (pt1.y - pt1current.y)*(pt1.y - pt1current.y) < 64 * 64) &&
 					((double)(pt2.x - pt2current.x)*(pt2.x - pt2current.x) + (pt2.y - pt2current.y)*(pt2.y - pt2current.y) < 64 * 64))
 				{
-	
+
 					(*current)[0] = ((*current)[0] + (*pos)[0]) / 2;
 
 					(*current)[1] = ((*current)[1] + (*pos)[1]) / 2;
@@ -380,12 +387,12 @@ Mat crop(String srcImage)
 
 int main(int, char**)
 {
-	char srcImageName[] = "../images/cubereal11.jpg";
+	char srcImageName[] = "../images/1.jpg";
 	IplImage* srcImage = cvLoadImage(srcImageName, 1);
 	Mat croppedImage=crop(String(srcImageName));
 	extractColors(croppedImage);
 	cvNamedWindow("SourceImage", CV_WINDOW_AUTOSIZE);
-	cvShowImage("SourceImage", srcImage);	
+	cvShowImage("SourceImage", srcImage);
 	cvWaitKey(0);
 	return 0;
 }
