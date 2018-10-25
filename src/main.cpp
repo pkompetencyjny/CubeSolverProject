@@ -8,7 +8,7 @@ using namespace cv;
 
 int extractColors(Mat croppedImage)
 {
-	GaussianBlur(croppedImage, croppedImage, Size(5, 5), 0);
+	GaussianBlur(croppedImage, croppedImage, Size(5, 5), 0); //idk why p;
 	IplImage* src = cvCloneImage(&(IplImage)croppedImage);
 	IplImage* copy = cvCreateImage(cvGetSize(src), 8, 3);
 	IplImage* copy2 = cvCreateImage(cvGetSize(src), 8, 3);
@@ -387,7 +387,7 @@ Mat crop(String srcImage)
 
 int main(int, char**)
 {
-	char srcImageName[] = "../images/cubereal22.jpg";
+	char srcImageName[] = "../images/cubereal2.jpg";
 	IplImage* srcImage = cvLoadImage(srcImageName, 1);
 	Mat croppedImage = crop(String(srcImageName));
 	extractColors(croppedImage);
