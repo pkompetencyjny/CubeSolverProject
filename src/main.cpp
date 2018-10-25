@@ -5,11 +5,10 @@
 #include <string>
 #include<opencv\cv.hpp>
 using namespace cv;
-/*
-int main()
+
+int colorImage(Mat croppedImage)
 {
-	char name[] = "../images/cubereal2.jpg";
-	IplImage* src = cvLoadImage(name, 1);
+	IplImage* src = cvCloneImage(&(IplImage)croppedImage);
 	IplImage* copy = cvCreateImage(cvGetSize(src), 8, 3);
 	IplImage* copy2 = cvCreateImage(cvGetSize(src), 8, 3);
 	CvScalar s, c, test;
@@ -83,15 +82,13 @@ int main()
 		std::cout << "white:" << w << std::endl;
 		std::cout << "orange:" << o << std::endl;
 
-cvNamedWindow("Input", CV_WINDOW_KEEPRATIO);
-cvShowImage("Input", src);
-cvNamedWindow("Output", CV_WINDOW_KEEPRATIO);
+cvNamedWindow("Output", CV_WINDOW_AUTOSIZE);
 cvShowImage("Output", copy);
-waitKey();
+
 cvReleaseImage(&src);
 	return 0;
 }
-*/
+
 void drawLine(Vec2f line, Mat &img, Scalar rgb = CV_RGB(0, 0, 255))
 {
 	if (line[1] != 0)
@@ -376,7 +373,6 @@ Mat crop(String srcImage)
 
 	Mat undistorted = Mat(Size(maxLength, maxLength), CV_8UC1);
 	cv::warpPerspective(original, undistorted, cv::getPerspectiveTransform(src, dst), Size(maxLength, maxLength));
-	imshow("undistorted", undistorted);
 	return undistorted;
 	//imshow("cube", cube);
 	//imshow("lines", outerBox);
@@ -384,16 +380,14 @@ Mat crop(String srcImage)
 
 int main(int, char**)
 {
-	VideoCapture cap(0); 
-	if (!cap.isOpened()) 
-		return -1;
-	Mat croppedImage=crop("../images/cubereal2.jpg");
-	for (;;)
-	{
-		Mat frame;
-		cap >> frame;
-		imshow("cam", frame);
-		if (waitKey(30) >= 0) break;
-	}
+	char srcImageName[] = "../images/cubereal2.jpg";
+	IplImage* srcImage = cvLoadImage(srcImageName, 1);
+	Mat croppedImage=crop(String(srcImageName));
+	colorImage(croppedImage);
+	cvNamedWindow("SourceImage", CV_WINDOW_AUTOSIZE);
+	cvShowImage("SourceImage", srcImage);
+	imshow("undistorted", croppedImage);
+	
+	cvWaitKey(0);
 	return 0;
 }
