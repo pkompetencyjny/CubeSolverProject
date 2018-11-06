@@ -10,6 +10,8 @@ include_directories(
 
 add_executable(CubeSolver
     main.cpp
+	maxind.h
+extractColors.h
 )
 
 target_link_libraries(CubeSolver
