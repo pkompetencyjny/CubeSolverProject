@@ -303,7 +303,7 @@ int main(int, char**)
 	Mat croppedImage;
    char srcImageName[] = "../images/cubereal2.jpg";
 	//Video
- /*  int fps=0;
+   int fps=0;
    Mat frame;
    VideoCapture cap(0); // open the default camera
    if (!cap.isOpened())  // check if we succeeded
@@ -312,19 +312,19 @@ int main(int, char**)
    {
 	   do {
 		   cap >> frame; // get a new frame from camera
-		   imshow("Video input", frame)
+		   imshow("Video input", frame);
 		   if (waitKey(30) >= 0) break;
 		   fps++;
 	   } while (fps < 15);
 	   fps = 0;
-	 //  croppedImage = crop(frame);
-	 //  extractColors(croppedImage);
+	   croppedImage = crop(frame);
+	   extractColors(croppedImage);
    }
-   */
-   Mat cube = imread(srcImageName, 1);
-   croppedImage = crop(cube);
+   
+   //Mat cube = imread(srcImageName, 1);
+   //croppedImage = crop(cube);
   // imshow("", croppedImage);
-   extractColors(croppedImage);
+  // extractColors(croppedImage);
    cvWaitKey(0);
    return 0;
 }
