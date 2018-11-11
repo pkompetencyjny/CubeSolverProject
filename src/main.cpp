@@ -97,9 +97,11 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 Mat crop(Mat srcImage)
 {
 	Mat cube = srcImage;
-	Mat original = cube;
+	cvtColor(cube, cube, cv::COLOR_BGR2GRAY);
+	Mat original = srcImage;
     Mat outerBox = Mat(cube.size(), CV_8UC1);
- //   adaptiveThreshold(cube, outerBox, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 5, 2);
+	adaptiveThreshold(cube, outerBox, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 5, 3);
+	//imshow("outerThr", outerBox);
     bitwise_not(outerBox, outerBox);
     Mat kernel = (Mat_<uchar>(3, 3) << 0, 1, 0, 1, 1, 1, 0, 1, 0);
     dilate(outerBox, outerBox, kernel);
@@ -291,35 +293,38 @@ Mat crop(Mat srcImage)
  
     Mat undistorted = Mat(Size(maxLength, maxLength), CV_8UC1);
     cv::warpPerspective(original, undistorted, cv::getPerspectiveTransform(src, dst), Size(maxLength, maxLength));
+	//imshow("", outerBox);
+	//imshow("2", cube);
     return undistorted;
-    imshow("cube", cube);
-    imshow("lines", outerBox);
-}
+}	
  
 int main(int, char**)
 {
-   // char srcImageName[] = "../images/cubereal2.jpg";
+	Mat croppedImage;
+   char srcImageName[] = "../images/cubereal2.jpg";
 	//Video
-	VideoCapture cap;
-	if (!cap.open(0))
-		return 0;
-	for (;;)
-	{
-		Mat frame;
-		cap >> frame;
-		if (frame.empty()) break; // end of video stream
-		Mat croppedImage = crop(frame);
-		extractColors(croppedImage);
-		cvNamedWindow("SourceVideo", CV_WINDOW_AUTOSIZE);
-		IplImage* src = cvCloneImage(&(IplImage)frame);
-		cvShowImage("SourceVideo", src);
-		if (waitKey(10) == 27) break; // stop capturing by pressing ESC 
-	}
-   // IplImage* srcImage = cvLoadImage(srcImageName, 1);
-  //  Mat croppedImage = crop(String(srcImageName));
-  //  extractColors(croppedImage);
-   // cvNamedWindow("SourceImage", CV_WINDOW_AUTOSIZE);
-   // cvShowImage("SourceImage", srcImage);
-    //cvWaitKey(0);
-    return 0;
+ /*  int fps=0;
+   Mat frame;
+   VideoCapture cap(0); // open the default camera
+   if (!cap.isOpened())  // check if we succeeded
+	   return -1;
+   for (;;)
+   {
+	   do {
+		   cap >> frame; // get a new frame from camera
+		   imshow("Video input", frame)
+		   if (waitKey(30) >= 0) break;
+		   fps++;
+	   } while (fps < 15);
+	   fps = 0;
+	 //  croppedImage = crop(frame);
+	 //  extractColors(croppedImage);
+   }
+   */
+   Mat cube = imread(srcImageName, 1);
+   croppedImage = crop(cube);
+  // imshow("", croppedImage);
+   extractColors(croppedImage);
+   cvWaitKey(0);
+   return 0;
 }

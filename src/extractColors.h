@@ -12,7 +12,7 @@ using namespace cv;
  
 void extractColors(Mat croppedImage)
 {
-    GaussianBlur(croppedImage, croppedImage, Size(5, 5), 0); //idk why p;
+    GaussianBlur(croppedImage, croppedImage, Size(5, 5), 0);
     IplImage* src = cvCloneImage(&(IplImage)croppedImage);
     IplImage* copy = cvCreateImage(cvGetSize(src), 8, 3);
     IplImage* hsvsrc = cvCreateImage(cvGetSize(src), 8, 3);
@@ -389,18 +389,18 @@ void extractColors(Mat croppedImage)
     else if (kolor9_max == 5) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 255, 255), -1); }
     else if (kolor9_max == 6) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 162, 74), -1); }
  
-    std::cout << "Green:" << g << std::endl;
-    std::cout << "Red:" << r << std::endl;
-    std::cout << "Blue:" << b << std::endl;
-    std::cout << "Yellow:" << y << std::endl;
-    std::cout << "white:" << w << std::endl;
-    std::cout << "orange:" << o << std::endl;
+    //std::cout << "Green:" << g << std::endl;
+   // std::cout << "Red:" << r << std::endl;
+   // std::cout << "Blue:" << b << std::endl;
+   // std::cout << "Yellow:" << y << std::endl;
+   // std::cout << "white:" << w << std::endl;
+   // std::cout << "orange:" << o << std::endl;
  
    // cvNamedWindow("Output", CV_WINDOW_FREERATIO);
    // cvShowImage("Output", copy);
  
     cvNamedWindow("Output 2");
-    cvShowImage("Output 2", copy2);
+	cvShowImage("Output 2", copy2);
  
     cvReleaseImage(&src);
 }
