@@ -9,9 +9,12 @@ include_directories(
 )
 
 add_executable(CubeSolver
-    main.cpp
-	maxind.h
-extractColors.h
+	main.cpp
+	cam.hpp
+	maxind.hpp
+	vision.cpp
+	extractColors.hpp
+	vision.hpp
 )
 
 target_link_libraries(CubeSolver
