@@ -300,6 +300,9 @@ Mat crop(Mat srcImage)
 }
 
 void vision()
-{
-	std::cout << "thread 2" << std::endl;
+{	
+	/*Mat image = imread("frame.jpg",1);
+	Mat croppedImage = crop(image);
+	extractColors(croppedImage); //<--z tego miejsca zwraca tablice tab[9];
+	*/
 }
