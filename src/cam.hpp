@@ -19,6 +19,7 @@ int camOpen()
 			fps++;
 		} while (fps != 30);
 		fps = 0;
+		resize(frame, frame, cv::Size(), 0.5, 0.5); // <-Do sprawdzenia czy dzia³a.
 		imwrite("frame.jpg", frame);
 	}
 	return 0;
