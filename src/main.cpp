@@ -3,7 +3,6 @@
 #include "cam.hpp"
 #include "vision.hpp"
 
-
 int main()
 {
 	std::thread camThread(&camOpen);

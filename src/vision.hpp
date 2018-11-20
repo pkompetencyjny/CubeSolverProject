@@ -1,5 +1,2 @@
-//#pragma once
-#ifndef VISION
-#define VISION
+#pragma once
 void vision();
-#endif

@@ -1,5 +1,4 @@
-#ifndef MAXIND
-#define MAXIND
+#pragma once
  
 #include <opencv\cv.hpp>
  
@@ -16,5 +15,3 @@ int maxind(std::vector < int > v)
     }
     return maxind;
 }
- 
-#endif

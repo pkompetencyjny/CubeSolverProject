@@ -1,5 +1,4 @@
-#ifndef CAM
-#define CAM
+#pragma once
 #include "opencv2/opencv.hpp"
 
 using namespace cv;
@@ -18,5 +17,3 @@ int camOpen()
 	}
 	return 0;
 }
-
-#endif

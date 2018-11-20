@@ -1,6 +1,4 @@
-#ifndef EXTRACTCOLORS
-#define EXTRACTCOLORS
-
+#pragma once
 #include <opencv\cv.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -404,5 +402,3 @@ void extractColors(Mat croppedImage)
 
 	cvReleaseImage(&src);
 }
-
-#endif
