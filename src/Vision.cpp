@@ -300,8 +300,8 @@ Mat crop(Mat srcImage)
 }
 
  char * vision()
-{	
-	Mat image = imread("frame.jpg",1);
+{
+	Mat image = imread("../build/frame.jpg");
 	Mat croppedImage = crop(image);
 	return extractColors(croppedImage); //<--z tego miejsca zwraca tablice tab[9]; //NO I ZWRACA
 	

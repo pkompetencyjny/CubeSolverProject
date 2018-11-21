@@ -392,7 +392,7 @@ char * extractColors(Mat croppedImage)
 
 	cvNamedWindow("Output 2");
 	cvShowImage("Output 2", copy2);
-
+	waitKey(0);
 	cvReleaseImage(&src);
 	return kostka;
 }
