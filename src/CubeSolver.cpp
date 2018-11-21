@@ -9,89 +9,88 @@ char blue[9];
 char green[9];
 char yellow[9];
 		 //----------------------------------
-	 CubeSolver(char tab[6][9])
+	 CubeSolver(char *tab[6][9])
 		 {
-			 //PRZYPADEK BIALEJ SCIANY
 		 for (int i = 0; i < 6; i++)
 		 {
 
-			 if (tab[i][4] == 'w')
+			 if (*tab[i][4] == 'w')
 			 {
-				 white[0] = tab[i][5];
-				 white[1] = tab[i][8];
-				 white[2] = tab[i][7];
-				 white[3] = tab[i][6];
-				 white[4] = tab[i][3];
-				 white[5] = tab[i][0];
-				 white[6] = tab[i][1];
-				 white[7] = tab[i][2];
-				 white[8] = tab[i][4];
+				 white[0] = *tab[i][5];
+				 white[1] = *tab[i][8];
+				 white[2] = *tab[i][7];
+				 white[3] = *tab[i][6];
+				 white[4] = *tab[i][3];
+				 white[5] = *tab[i][0];
+				 white[6] = *tab[i][1];
+				 white[7] = *tab[i][2];
+				 white[8] = *tab[i][4];
 			 }
-			 //ŻÓŁTA
-			 if (tab[i][4] == 'y')
+			 
+			 if (*tab[i][4] == 'y')
 			 {
-				 yellow[0] = tab[i][5];
-				 yellow[1] = tab[i][2];
-				 yellow[2] = tab[i][1];
-				 yellow[3] = tab[i][0];
-				 yellow[4] = tab[i][3];
-				 yellow[5] = tab[i][6];
-				 yellow[6] = tab[i][7];
-				 yellow[7] = tab[i][8];
-				 yellow[8] = tab[i][4];
-			 }
-
-			 //RESZTA
-			 if (tab[i][4] == 'g')
-			 {
-				 green[0] = tab[i][2];
-				 green[1] = tab[i][5];
-				 green[2] = tab[i][8];
-				 green[3] = tab[i][7];
-				 green[4] = tab[i][6];
-				 green[5] = tab[i][3];
-				 green[6] = tab[i][0];
-				 green[7] = tab[i][1];
-				 green[8] = tab[i][4];
+				 yellow[0] = *tab[i][5];
+				 yellow[1] = *tab[i][2];
+				 yellow[2] = *tab[i][1];
+				 yellow[3] = *tab[i][0];
+				 yellow[4] = *tab[i][3];
+				 yellow[5] = *tab[i][6];
+				 yellow[6] = *tab[i][7];
+				 yellow[7] = *tab[i][8];
+				 yellow[8] = *tab[i][4];
 			 }
 
-			 if (tab[i][4] == 'r')
+			 
+			 if (*tab[i][4] == 'g')
 			 {
-				 red[0] = tab[i][2];
-				 red[1] = tab[i][5];
-				 red[2] = tab[i][8];
-				 red[3] = tab[i][7];
-				 red[4] = tab[i][6];
-				 red[5] = tab[i][3];
-				 red[6] = tab[i][0];
-				 red[7] = tab[i][1];
-				 red[8] = tab[i][4];
+				 green[0] = *tab[i][2];
+				 green[1] = *tab[i][5];
+				 green[2] = *tab[i][8];
+				 green[3] = *tab[i][7];
+				 green[4] = *tab[i][6];
+				 green[5] = *tab[i][3];
+				 green[6] = *tab[i][0];
+				 green[7] = *tab[i][1];
+				 green[8] = *tab[i][4];
 			 }
 
-			 if (tab[i][4] == 'b')
+			 if (*tab[i][4] == 'r')
 			 {
-				 blue[0] = tab[i][2];
-				 blue[1] = tab[i][5];
-				 blue[2] = tab[i][8];
-				 blue[3] = tab[i][7];
-				 blue[4] = tab[i][6];
-				 blue[5] = tab[i][3];
-				 blue[6] = tab[i][0];
-				 blue[7] = tab[i][1];
-				 blue[8] = tab[i][4];
+				 red[0] = *tab[i][2];
+				 red[1] = *tab[i][5];
+				 red[2] = *tab[i][8];
+				 red[3] = *tab[i][7];
+				 red[4] = *tab[i][6];
+				 red[5] = *tab[i][3];
+				 red[6] = *tab[i][0];
+				 red[7] = *tab[i][1];
+				 red[8] = *tab[i][4];
 			 }
 
-			 if (tab[i][4] == 'o')
+			 if (*tab[i][4] == 'b')
 			 {
-				 orange[0] = tab[i][2];
-				 orange[1] = tab[i][5];
-				 orange[2] = tab[i][8];
-				 orange[3] = tab[i][7];
-				 orange[4] = tab[i][6];
-				 orange[5] = tab[i][3];
-				 orange[6] = tab[i][0];
-				 orange[7] = tab[i][1];
-				 orange[8] = tab[i][4];
+				 blue[0] = *tab[i][2];
+				 blue[1] = *tab[i][5];
+				 blue[2] = *tab[i][8];
+				 blue[3] = *tab[i][7];
+				 blue[4] = *tab[i][6];
+				 blue[5] = *tab[i][3];
+				 blue[6] = *tab[i][0];
+				 blue[7] = *tab[i][1];
+				 blue[8] = *tab[i][4];
+			 }
+
+			 if (*tab[i][4] == 'o')
+			 {
+				 orange[0] = *tab[i][2];
+				 orange[1] = *tab[i][5];
+				 orange[2] = *tab[i][8];
+				 orange[3] = *tab[i][7];
+				 orange[4] = *tab[i][6];
+				 orange[5] = *tab[i][3];
+				 orange[6] = *tab[i][0];
+				 orange[7] = *tab[i][1];
+				 orange[8] = *tab[i][4];
 			 }
 		 }
 
@@ -887,7 +886,7 @@ char yellow[9];
 		 }
 };
 
-int main()
+/*int main()
 {
 	/*cout << "________________________| RUBIK'S CUBE SOLVER |________________________" << endl << endl;
 
@@ -917,7 +916,7 @@ int main()
 	cout << "Yellow Side : ";
 	display(yellow);*/
 
-	char state[6][9] = { { 'b', 'b', 'b', 'r', 'r', 'r', 'r', 'r', 'r' },
+	/*char state[6][9] = { { 'b', 'b', 'b', 'r', 'r', 'r', 'r', 'r', 'r' },
 						{'o', 'o', 'o', 'b','b','b','b','b','b' },
 						 { 'g','g','g','o','o','o','o','o','o' },
 						 { 'r','r','r','g','g','g','g','g','g' },
@@ -935,4 +934,4 @@ int main()
 
 ///*	cout << "Turn these sides of the Cube in Clockwise Direction by 90 degrees in this exact order..." << endl << endl;
 	return 0;
-}
+}*/
