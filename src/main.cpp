@@ -28,8 +28,8 @@ int main()
 			} while (takNie != 't');
 			takNie = 'n';
 		}
-		//CubeSolver cube = CubeSolver(stanKostki);
-		//cube.solution();
+		CubeSolver cube = CubeSolver(stanKostki);
+		cube.solution();
 		return 0;
 	}
 }
