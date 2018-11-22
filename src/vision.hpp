@@ -1,2 +1,3 @@
 #pragma once
-char* vision();
+#include <vector>
+std::vector<char> vision();

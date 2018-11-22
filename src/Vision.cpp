@@ -6,6 +6,7 @@
 #include <opencv\cv.hpp>
 #include "extractColors.hpp"
 #include "vision.hpp"
+#include <vector>
 
 
 using namespace cv;
@@ -298,11 +299,9 @@ Mat crop(Mat srcImage)
 	//imshow("2", cube);
 	return undistorted;
 }
-
- char * vision()
+std::vector<char> vision()
 {
 	Mat image = imread("../build/frame.jpg");
 	Mat croppedImage = crop(image);
 	return extractColors(croppedImage); //<--z tego miejsca zwraca tablice tab[9]; //NO I ZWRACA
-	
 }

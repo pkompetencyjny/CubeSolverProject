@@ -5,10 +5,11 @@
 #include <opencv2/highgui.hpp>
 #include <iostream>
 #include "maxind.hpp"
+#include <vector>
 
 using namespace cv;
 
-char * extractColors(Mat croppedImage)
+std::vector<char> extractColors(Mat croppedImage)
 {
 	GaussianBlur(croppedImage, croppedImage, Size(5, 5), 0);
 	IplImage* src = cvCloneImage(&(IplImage)croppedImage);
@@ -394,7 +395,8 @@ char * extractColors(Mat croppedImage)
 	cvShowImage("Output 2", copy2);
 	waitKey(1000);
 	cvReleaseImage(&src);
-	return kostka;
+	std::vector<char> kostka_vector(kostka, kostka + sizeof kostka / sizeof kostka[0]);
+	return kostka_vector;
 }
 
 //TA FUNKCJA MA ZWRÓCIÆ char tab[9];
