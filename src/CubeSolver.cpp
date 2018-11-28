@@ -247,16 +247,23 @@ char yellow[9];
 
 		 void solution()
 		 {
+			 cout << endl;
+			 cout << "White cross:" << endl;
 			 solve_white_cross();
 			 cout << endl;
+			 cout << "White corners:" << endl;
 			 solve_white_corners();
 			 cout << endl;
+			 cout << "Middle layer" << endl;
 			 solve_middle_layer();
 			 cout << endl;
+			 cout << "Yellow cross" << endl;
 			 solve_yellow_cross();
 			 cout << endl;
+			 cout << "Yellow Corners" << endl;
 			 solve_yellow_corners();
 			 cout << endl;
+			 cout << "Yellow Corners orientation" << endl;
 			 yellow_corner_orientation();
 			 cout << endl;
 			 yellow_edges_colour_arrangement();
