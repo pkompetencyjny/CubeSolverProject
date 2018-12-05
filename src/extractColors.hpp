@@ -40,7 +40,7 @@ std::vector<char> extractColors(Mat croppedImage)
 		for (int j = 0; j < (src->width); j++)
 		{
 			s = cvGet2D(hsvsrc, i, j);
-			if (s.val[0] > 35 && s.val[0] < 80 && s.val[1] > 92)
+			if (s.val[0] > 46 && s.val[0] < 99 && s.val[1] >= 50)
 			{
 				g++;
 				c.val[2] = 0;
@@ -84,7 +84,7 @@ std::vector<char> extractColors(Mat croppedImage)
 					kolor9[1]++;
 				}
 			}
-			else if (s.val[0] > 22 && s.val[0] < 34 && s.val[1] > 91)
+			else if (s.val[0] >= 22 && s.val[0] < 45 && s.val[1] >= 50)
 			{
 				y++;
 				c.val[2] = 255;
@@ -129,7 +129,7 @@ std::vector<char> extractColors(Mat croppedImage)
 				}
 			}
 
-			else if (s.val[0] > 8 && s.val[0] < 18 && s.val[1] > 92)
+			else if (s.val[0] >= 8 && s.val[0] < 22 && s.val[1] >= 50)
 			{
 				o++;
 				c.val[2] = 255;
@@ -173,7 +173,7 @@ std::vector<char> extractColors(Mat croppedImage)
 					kolor9[6]++;
 				}
 			}
-			else if ((s.val[0] >= 0 && s.val[0] < 8 && s.val[1] > 91) || (s.val[0] > 150 && s.val[0] < 180 && s.val[1] > 91))
+			else if ((s.val[0] >= 0 && s.val[0] <= 8 && s.val[1] >= 50) || (s.val[0] >= 151 && s.val[0] <= 180 && s.val[1] >= 50))
 			{
 				r++;
 				c.val[2] = 255;
@@ -217,7 +217,7 @@ std::vector<char> extractColors(Mat croppedImage)
 					kolor9[2]++;
 				}
 			}
-			else if (s.val[0] > 80 && s.val[0] < 150 && s.val[1] > 92)
+			else if (s.val[0] >= 99 && s.val[0] < 150 && s.val[1] >= 50)
 			{
 				b++;
 				c.val[2] = 0;
@@ -261,7 +261,7 @@ std::vector<char> extractColors(Mat croppedImage)
 					kolor9[3]++;
 				}
 			}
-			else if (s.val[1] >= 0 && s.val[1] < 91 && s.val[2] > 100 && s.val[2] < 255)
+			else if (s.val[1] >= 0 && s.val[1] < 50)
 			{
 				w++;
 				c.val[2] = 255;
@@ -335,61 +335,61 @@ std::vector<char> extractColors(Mat croppedImage)
 	else if (kolor1_max == 5) { cvRectangle(copy2, Point(0, 0), Point(128, 128), CV_RGB(255, 255, 255), -1); kostka[0] = 'w'; }
 	else if (kolor1_max == 6) { cvRectangle(copy2, Point(0, 0), Point(128, 128), CV_RGB(255, 162, 74), -1); kostka[0] = 'o'; };
 
-	if (kolor2_max == 1) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(0, 255, 0), -1); kostka[1] = 'g';}
-	else if (kolor2_max == 2) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 0, 0), -1); kostka[1] = 'r';}
-	else if (kolor2_max == 3) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(0, 0, 255), -1); kostka[1] = 'b';}
-	else if (kolor2_max == 4) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 255, 0), -1); kostka[1] = 'y';}
-	else if (kolor2_max == 5) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 255, 255), -1); kostka[1] = 'w';}
-	else if (kolor2_max == 6) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 162, 74), -1); kostka[1] = 'o';}
+	if (kolor2_max == 1) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(0, 255, 0), -1); kostka[1] = 'g'; }
+	else if (kolor2_max == 2) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 0, 0), -1); kostka[1] = 'r'; }
+	else if (kolor2_max == 3) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(0, 0, 255), -1); kostka[1] = 'b'; }
+	else if (kolor2_max == 4) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 255, 0), -1); kostka[1] = 'y'; }
+	else if (kolor2_max == 5) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 255, 255), -1); kostka[1] = 'w'; }
+	else if (kolor2_max == 6) { cvRectangle(copy2, Point(128, 0), Point(256, 128), CV_RGB(255, 162, 74), -1); kostka[1] = 'o'; }
 
-	if (kolor3_max == 1) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(0, 255, 0), -1); kostka[2] = 'g';}
-	else if (kolor3_max == 2) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 0, 0), -1); kostka[2] = 'r';}
-	else if (kolor3_max == 3) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(0, 0, 255), -1); kostka[2] = 'b';}
-	else if (kolor3_max == 4) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 255, 0), -1); kostka[2] = 'y';}
-	else if (kolor3_max == 5) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 255, 255), -1); kostka[2] = 'w';}
-	else if (kolor3_max == 6) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 162, 74), -1); kostka[2] = 'o';}
+	if (kolor3_max == 1) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(0, 255, 0), -1); kostka[2] = 'g'; }
+	else if (kolor3_max == 2) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 0, 0), -1); kostka[2] = 'r'; }
+	else if (kolor3_max == 3) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(0, 0, 255), -1); kostka[2] = 'b'; }
+	else if (kolor3_max == 4) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 255, 0), -1); kostka[2] = 'y'; }
+	else if (kolor3_max == 5) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 255, 255), -1); kostka[2] = 'w'; }
+	else if (kolor3_max == 6) { cvRectangle(copy2, Point(256, 0), Point(384, 128), CV_RGB(255, 162, 74), -1); kostka[2] = 'o'; }
 
-	if (kolor4_max == 1) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(0, 255, 0), -1); kostka[3] = 'g';}
-	else if (kolor4_max == 2) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 0, 0), -1); kostka[3] = 'r';}
-	else if (kolor4_max == 3) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(0, 0, 255), -1); kostka[3] = 'b';}
-	else if (kolor4_max == 4) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 255, 0), -1); kostka[3] = 'y';}
-	else if (kolor4_max == 5) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 255, 255), -1); kostka[3] = 'w';}
-	else if (kolor4_max == 6) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 162, 74), -1); kostka[3] = 'o';}
+	if (kolor4_max == 1) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(0, 255, 0), -1); kostka[3] = 'g'; }
+	else if (kolor4_max == 2) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 0, 0), -1); kostka[3] = 'r'; }
+	else if (kolor4_max == 3) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(0, 0, 255), -1); kostka[3] = 'b'; }
+	else if (kolor4_max == 4) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 255, 0), -1); kostka[3] = 'y'; }
+	else if (kolor4_max == 5) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 255, 255), -1); kostka[3] = 'w'; }
+	else if (kolor4_max == 6) { cvRectangle(copy2, Point(0, 128), Point(128, 256), CV_RGB(255, 162, 74), -1); kostka[3] = 'o'; }
 
-	if (kolor5_max == 1) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(0, 255, 0), -1); kostka[4] = 'g';}
-	else if (kolor5_max == 2) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 0, 0), -1); kostka[4] = 'r';}
-	else if (kolor5_max == 3) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(0, 0, 255), -1); kostka[4] = 'b';}
-	else if (kolor5_max == 4) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 255, 0), -1); kostka[4] = 'y';}
-	else if (kolor5_max == 5) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 255, 255), -1); kostka[4] = 'w';}
-	else if (kolor5_max == 6) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 162, 74), -1); kostka[4] = 'o';}
+	if (kolor5_max == 1) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(0, 255, 0), -1); kostka[4] = 'g'; }
+	else if (kolor5_max == 2) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 0, 0), -1); kostka[4] = 'r'; }
+	else if (kolor5_max == 3) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(0, 0, 255), -1); kostka[4] = 'b'; }
+	else if (kolor5_max == 4) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 255, 0), -1); kostka[4] = 'y'; }
+	else if (kolor5_max == 5) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 255, 255), -1); kostka[4] = 'w'; }
+	else if (kolor5_max == 6) { cvRectangle(copy2, Point(128, 128), Point(256, 256), CV_RGB(255, 162, 74), -1); kostka[4] = 'o'; }
 
-	if (kolor6_max == 1) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(0, 255, 0), -1); kostka[5] = 'g';}
-	else if (kolor6_max == 2) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 0, 0), -1); kostka[5] = 'r';}
-	else if (kolor6_max == 3) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(0, 0, 255), -1); kostka[5] = 'b';}
-	else if (kolor6_max == 4) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 255, 0), -1); kostka[5] = 'y';}
-	else if (kolor6_max == 5) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 255, 255), -1); kostka[5] = 'w';}
-	else if (kolor6_max == 6) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 162, 74), -1); kostka[5] = 'o';}
+	if (kolor6_max == 1) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(0, 255, 0), -1); kostka[5] = 'g'; }
+	else if (kolor6_max == 2) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 0, 0), -1); kostka[5] = 'r'; }
+	else if (kolor6_max == 3) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(0, 0, 255), -1); kostka[5] = 'b'; }
+	else if (kolor6_max == 4) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 255, 0), -1); kostka[5] = 'y'; }
+	else if (kolor6_max == 5) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 255, 255), -1); kostka[5] = 'w'; }
+	else if (kolor6_max == 6) { cvRectangle(copy2, Point(256, 128), Point(384, 256), CV_RGB(255, 162, 74), -1); kostka[5] = 'o'; }
 
-	if (kolor7_max == 1) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(0, 255, 0), -1); kostka[6] = 'g';}
-	else if (kolor7_max == 2) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 0, 0), -1); kostka[6] = 'r';}
-	else if (kolor7_max == 3) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(0, 0, 255), -1); kostka[6] = 'b';}
-	else if (kolor7_max == 4) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 255, 0), -1); kostka[6] = 'y';}
-	else if (kolor7_max == 5) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 255, 255), -1); kostka[6] = 'w';}
-	else if (kolor7_max == 6) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 162, 74), -1); kostka[6] = 'o';}
+	if (kolor7_max == 1) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(0, 255, 0), -1); kostka[6] = 'g'; }
+	else if (kolor7_max == 2) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 0, 0), -1); kostka[6] = 'r'; }
+	else if (kolor7_max == 3) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(0, 0, 255), -1); kostka[6] = 'b'; }
+	else if (kolor7_max == 4) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 255, 0), -1); kostka[6] = 'y'; }
+	else if (kolor7_max == 5) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 255, 255), -1); kostka[6] = 'w'; }
+	else if (kolor7_max == 6) { cvRectangle(copy2, Point(0, 256), Point(128, 384), CV_RGB(255, 162, 74), -1); kostka[6] = 'o'; }
 
-	if (kolor8_max == 1) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(0, 255, 0), -1); kostka[7] = 'g';}
-	else if (kolor8_max == 2) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 0, 0), -1); kostka[7] = 'r';}
-	else if (kolor8_max == 3) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(0, 0, 255), -1); kostka[7] = 'b';}
-	else if (kolor8_max == 4) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 255, 0), -1); kostka[7] = 'y';}
-	else if (kolor8_max == 5) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 255, 255), -1); kostka[7] = 'w';}
-	else if (kolor8_max == 6) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 162, 74), -1); kostka[7] = 'o';}
+	if (kolor8_max == 1) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(0, 255, 0), -1); kostka[7] = 'g'; }
+	else if (kolor8_max == 2) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 0, 0), -1); kostka[7] = 'r'; }
+	else if (kolor8_max == 3) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(0, 0, 255), -1); kostka[7] = 'b'; }
+	else if (kolor8_max == 4) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 255, 0), -1); kostka[7] = 'y'; }
+	else if (kolor8_max == 5) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 255, 255), -1); kostka[7] = 'w'; }
+	else if (kolor8_max == 6) { cvRectangle(copy2, Point(128, 256), Point(256, 384), CV_RGB(255, 162, 74), -1); kostka[7] = 'o'; }
 
-	if (kolor9_max == 1) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(0, 255, 0), -1); kostka[8] = 'g';}
-	else if (kolor9_max == 2) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 0, 0), -1); kostka[8] = 'r';}
-	else if (kolor9_max == 3) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(0, 0, 255), -1); kostka[8] = 'b';}
-	else if (kolor9_max == 4) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 255, 0), -1); kostka[8] = 'y';}
-	else if (kolor9_max == 5) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 255, 255), -1); kostka[8] = 'w';}
-	else if (kolor9_max == 6) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 162, 74), -1); kostka[8] = 'o';}
+	if (kolor9_max == 1) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(0, 255, 0), -1); kostka[8] = 'g'; }
+	else if (kolor9_max == 2) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 0, 0), -1); kostka[8] = 'r'; }
+	else if (kolor9_max == 3) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(0, 0, 255), -1); kostka[8] = 'b'; }
+	else if (kolor9_max == 4) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 255, 0), -1); kostka[8] = 'y'; }
+	else if (kolor9_max == 5) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 255, 255), -1); kostka[8] = 'w'; }
+	else if (kolor9_max == 6) { cvRectangle(copy2, Point(256, 256), Point(384, 384), CV_RGB(255, 162, 74), -1); kostka[8] = 'o'; }
 
 	cvNamedWindow("Output 2");
 	cvShowImage("Output 2", copy2);
