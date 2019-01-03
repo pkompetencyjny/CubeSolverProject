@@ -2,13 +2,14 @@
 #include <vector>
 using namespace std;
 //-----------------------------------------------
-class CubeSolver {public:
-char white[9];
-char red[9];
-char orange[9];
-char blue[9];
-char green[9];
-char yellow[9];
+class CubeSolver {
+public:
+	char white[9];
+	char red[9];
+	char orange[9];
+	char blue[9];
+	char green[9];
+	char yellow[9];
 		 //----------------------------------
 	 CubeSolver(std::vector<char> tab[6])
 		 {

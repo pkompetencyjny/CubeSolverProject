@@ -8,9 +8,11 @@
 #include "CubeSolver.cpp"
 #include <cstdlib>
 
+
 int main()
 {
-	std::thread camThread(&camOpen);
+	int endCameraThread = 0;
+	std::thread camThread(&camOpen,&endCameraThread);
 	std::vector<char> stanKostki[6];
 	int j = 0;
 	char takNie='n';
@@ -28,6 +30,7 @@ int main()
 			} while (takNie != 't');
 			takNie = 'n';
 		}
+		endCameraThread = 1;
 		CubeSolver cube = CubeSolver(stanKostki);
 		cube.solution();
 		return 0;

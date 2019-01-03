@@ -301,7 +301,7 @@ Mat crop(Mat srcImage)
 }
 std::vector<char> vision()
 {
-	Mat image = imread("../build/frame.jpg");
+	Mat image = imread("frame.jpg");
 	Mat croppedImage = crop(image);
-	return extractColors(croppedImage); //<--z tego miejsca zwraca tablice tab[9]; //NO I ZWRACA
+	return extractColors(croppedImage);
 }
