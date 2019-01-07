@@ -6,7 +6,6 @@
 #include <opencv\cv.hpp>
 #include "extractColors.hpp"
 #include "vision.hpp"
-#include <vector>
 
 
 using namespace cv;
@@ -303,5 +302,6 @@ std::vector<char> vision()
 {
 	Mat image = imread("frame.jpg");
 	Mat croppedImage = crop(image);
-	return extractColors(croppedImage);
+	extractColors ec(croppedImage);
+	return ec.stateOfCube();
 }

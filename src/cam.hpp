@@ -6,6 +6,8 @@ int camOpen(int* endCameraThread)
 {
 	Mat frame;
 	int fps=0;
+	int limit = 30;
+	double scale_value = 0.8;
 	VideoCapture cap(0); // open the default camera
 	if (!cap.isOpened())  // check if we succeeded
 		return -1;
@@ -15,11 +17,11 @@ int camOpen(int* endCameraThread)
 		do {
 			cap >> frame; // get a new frame from camera
 			imshow("Camera input", frame);
-			if (waitKey(30) >= 0) break;
+			if (waitKey(limit) >= 0) break;
 			fps++;
-		} while (fps != 30);
+		} while (fps != limit);
 		fps = 0;
-		resize(frame, frame, cv::Size(), 0.8, 0.8);
+		resize(frame, frame, cv::Size(), scale_value, scale_value);
 		imwrite("frame.jpg", frame);
 	} while (*(endCameraThread)!=1);
 	return 0;

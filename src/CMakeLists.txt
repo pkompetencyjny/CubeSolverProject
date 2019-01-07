@@ -16,6 +16,8 @@ add_executable(CubeSolver
 	extractColors.hpp
 	vision.hpp
 	CubeSolver.cpp
+	CubeSolver.hpp
+	extractColors.cpp
 )
 
 target_link_libraries(CubeSolver
