@@ -18,6 +18,7 @@ add_executable(CubeSolver
 	CubeSolver.cpp
 	CubeSolver.hpp
 	extractColors.cpp
+	cvui.h
 )
 
 target_link_libraries(CubeSolver

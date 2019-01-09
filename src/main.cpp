@@ -1,3 +1,5 @@
+#define CVUI_IMPLEMENTATION
+#include "cvui.h"
 #include <iostream>
 #include <thread>
 #include <string>
@@ -7,9 +9,35 @@
 #include "vision.hpp"
 #include "CubeSolver.hpp"
 #include <cstdlib>
+#include <opencv2/opencv.hpp>
 
+#define WINDOW_NAME "CubeSolver"
 
-int main()
+int main(int argc, const char *argv[])
+{
+	cv::Mat frame = cv::Mat(100, 220, CV_8UC3);
+	int count = 0;
+	cvui::init(WINDOW_NAME);
+
+	while (true) {
+		frame = cv::Scalar(49, 52, 49);
+
+		cvui::printf(frame, 20, 20, 0.4, 0xffffff, "Czy stan kostki sie zgadza?");
+		if (cvui::button(frame, 40, 50, "Tak")) {		
+			count++;
+		}
+		if (cvui::button(frame, 100, 50, "Nie!")) {
+			count++;
+		}
+
+		cvui::imshow(WINDOW_NAME, frame);
+		if (cv::waitKey(20) == 27) {
+			break;
+		}
+	}
+	return 0;
+}
+/*int main()
 {
 	int endCameraThread = 0;
 	std::thread camThread(&camOpen,&endCameraThread);
@@ -36,4 +64,4 @@ int main()
 		cube.solution();
 		return 0;
 	}
-}
+}*/
