@@ -1,10 +1,9 @@
-#pragma once
-#include "extractColors.hpp"
-#include "maxind.hpp"
+#include "ExtractColors.hpp"
+#include "Utils.hpp"
 
 using namespace cv;
 
-extractColors::extractColors(Mat croppedImage)
+ExtractColors::ExtractColors(Mat croppedImage)
 {
 	GaussianBlur(croppedImage, croppedImage, Size(5, 5), 0);
 	src = cvCloneImage(&(IplImage)croppedImage);
@@ -238,19 +237,19 @@ extractColors::extractColors(Mat croppedImage)
 		}
 	}
 }
-	std::vector <char> extractColors::stateOfCube() {
+	std::vector <char> ExtractColors::stateOfCube() {
+	Utils utils = Utils();
 	static char cube_element[9];
-
 	int color[9];
-	color[0] = maxind(color0);
-	color[1] = maxind(color1);
-	color[2] = maxind(color2);
-	color[3] = maxind(color3);
-	color[4] = maxind(color4);
-	color[5] = maxind(color5);
-	color[6] = maxind(color6);
-	color[7] = maxind(color7);
-	color[8] = maxind(color8);
+	color[0] = utils.Maxind(color0);
+	color[1] = utils.Maxind(color1);
+	color[2] = utils.Maxind(color2);
+	color[3] = utils.Maxind(color3);
+	color[4] = utils.Maxind(color4);
+	color[5] = utils.Maxind(color5);
+	color[6] = utils.Maxind(color6);
+	color[7] = utils.Maxind(color7);
+	color[8] = utils.Maxind(color8);
 
 	if (color[0] == 1) { cvRectangle(copy2, Point(0, 0), Point(128, 128), CV_RGB(0, 255, 0), -1);  cube_element[0] = 'g'; }
 	else if (color[0] == 2) { cvRectangle(copy2, Point(0, 0), Point(128, 128), CV_RGB(255, 0, 0), -1);  cube_element[0] = 'r'; }

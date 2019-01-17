@@ -8,7 +8,7 @@
 
 using namespace cv;
 
-class extractColors 
+class ExtractColors 
 {
 private:
 	IplImage* src;
@@ -19,7 +19,7 @@ private:
 
 	std::vector < int >color0, color1, color2, color3, color4, color5, color6, color7, color8;
 public:
-	extractColors(Mat croppedImage);
+	ExtractColors(Mat croppedImage);
 	std::vector <char> stateOfCube();
 
 };

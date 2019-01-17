@@ -1,4 +1,3 @@
-﻿#pragma once
 #include<iostream>
 #include <vector>
 #include "CubeSolver.hpp"

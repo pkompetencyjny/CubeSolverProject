@@ -10,15 +10,15 @@ include_directories(
 
 add_executable(CubeSolver
 	main.cpp
-	cam.hpp
-	maxind.hpp
-	vision.cpp
-	extractColors.hpp
-	vision.hpp
+	Cam.hpp
+	Vision.cpp
+	ExtractColors.hpp
+	Vision.hpp
 	CubeSolver.cpp
 	CubeSolver.hpp
-	extractColors.cpp
-	cvui.h
+	ExtractColors.cpp
+	Utils.cpp
+	Utils.hpp
 )
 
 target_link_libraries(CubeSolver

@@ -11,8 +11,6 @@ public:
 	char yellow[9];
 	CubeSolver(std::vector<char> tab[6]);
 
-
-
 	void display(char face[9]);
 	void swap(char &a, char &b);
 	void rotate_clock(char choice);

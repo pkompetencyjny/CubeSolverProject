@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 #include <opencv\cv.hpp>
-#include "extractColors.hpp"
-#include "vision.hpp"
-
+#include "ExtractColors.hpp"
+#include "Vision.hpp"
+#include "Utils.hpp"
 
 using namespace cv;
 
@@ -24,11 +24,11 @@ void drawLine(Vec2f line, Mat &img, Scalar rgb = CV_RGB(0, 0, 255))
 	{
 		cv::line(img, Point(line[0], 0), Point(line[0], img.size().height), rgb);
 	}
-
 }
 
 void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 {
+	Utils utils = Utils();
 	std::vector<Vec2f>::iterator current;
 	for (current = lines->begin(); current != lines->end(); current++)
 	{
@@ -36,7 +36,7 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 		float p1 = (*current)[0];
 		float theta1 = (*current)[1];
 		Point pt1current, pt2current;
-		if (theta1 > CV_PI * 45 / 180 && theta1 < CV_PI * 135 / 180)
+		if (theta1 > utils.toRadians(45)&& theta1 < utils.toRadians(135))
 		{
 			pt1current.x = 0;
 
@@ -59,12 +59,12 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 		for (pos = lines->begin(); pos != lines->end(); pos++)
 		{
 			if (*current == *pos) continue;
-			if (fabs((*pos)[0] - (*current)[0]) < 20 && fabs((*pos)[1] - (*current)[1]) < CV_PI * 10 / 180)
+			if (fabs((*pos)[0] - (*current)[0]) < 20 && fabs((*pos)[1] - (*current)[1]) < utils.toRadians(10))
 			{
 				float p = (*pos)[0];
 				float theta = (*pos)[1];
 				Point pt1, pt2;
-				if ((*pos)[1] > CV_PI * 45 / 180 && (*pos)[1] < CV_PI * 135 / 180)
+				if ((*pos)[1] > utils.toRadians(45) && (*pos)[1] < utils.toRadians(135))
 				{
 					pt1.x = 0;
 					pt1.y = p / sin(theta);
@@ -94,9 +94,9 @@ void mergeRelatedLines(std::vector<Vec2f> *lines, Mat &img)
 	}
 }
 
-
 Mat crop(Mat srcImage)
 {
+	Utils utils = Utils();
 	Mat cube = srcImage;
 	cvtColor(cube, cube, cv::COLOR_BGR2GRAY);
 	Mat original = srcImage;
@@ -145,7 +145,7 @@ Mat crop(Mat srcImage)
 
 	erode(outerBox, outerBox, kernel);
 	std::vector<Vec2f> lines;
-	HoughLines(outerBox, lines, 1, CV_PI / 180, 200);
+	HoughLines(outerBox, lines, 1, utils.toRadians(1), 200);
 
 	mergeRelatedLines(&lines, cube);
 
@@ -167,7 +167,7 @@ Mat crop(Mat srcImage)
 		double xIntercept, yIntercept;
 		xIntercept = p / cos(theta);
 		yIntercept = p / (cos(theta)*sin(theta));
-		if (theta > CV_PI * 80 / 180 && theta < CV_PI * 100 / 180)
+		if (theta > utils.toRadians(80) && theta < utils.toRadians(100))
 		{
 			if (p < topEdge[0])
 
@@ -176,7 +176,7 @@ Mat crop(Mat srcImage)
 			if (p > bottomEdge[0])
 				bottomEdge = current;
 		}
-		else if (theta<CV_PI * 10 / 180 || theta>CV_PI * 170 / 180)
+		else if (theta<utils.toRadians(10) || theta>utils.toRadians(170))
 		{
 			if (xIntercept > rightXIntercept)
 			{
@@ -298,10 +298,10 @@ Mat crop(Mat srcImage)
 	//imshow("2", cube);
 	return undistorted;
 }
-std::vector<char> vision()
+std::vector<char> Vision()
 {
 	Mat image = imread("frame.jpg");
 	Mat croppedImage = crop(image);
-	extractColors ec(croppedImage);
+	ExtractColors ec(croppedImage);
 	return ec.stateOfCube();
 }
